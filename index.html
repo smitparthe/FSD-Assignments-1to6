@@ -1,30 +1,404 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FSD-Lab Assignment 1 to 6</title>
+    <title>FSD Lab | Assignments 1–6</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            color: #f8fafc;
+            background:
+                radial-gradient(ellipse at top left, #25245a 0%, transparent 45%),
+                radial-gradient(ellipse at bottom right, #123c52 0%, transparent 45%),
+                #0b1020;
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: auto;
+            padding: 55px 24px;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 75px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            font-size: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-icon {
+            display: grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 13px;
+            background: linear-gradient(135deg, #818cf8, #6366f1);
+            box-shadow: 0 6px 24px #6366f155;
+            font-size: 22px;
+        }
+
+        .tag {
+            color: #c7d2fe;
+            background: #818cf81c;
+            border: 1px solid #818cf84d;
+            border-radius: 30px;
+            padding: 9px 15px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .hero {
+            max-width: 750px;
+            margin-bottom: 45px;
+        }
+
+        .eyebrow {
+            color: #a5b4fc;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: clamp(38px, 6vw, 64px);
+            line-height: 1.1;
+            letter-spacing: -3px;
+            margin-bottom: 20px;
+        }
+
+        h1 span {
+            background: linear-gradient(90deg, #a5b4fc, #67e8f9);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            color: #a5afc5;
+            font-size: 16px;
+            line-height: 1.8;
+            max-width: 580px;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 22px;
+        }
+
+        .section-heading h2 {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .count {
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .card {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 225px;
+            padding: 25px;
+            color: inherit;
+            text-decoration: none;
+            background: #ffffff08;
+            border: 1px solid #ffffff14;
+            border-radius: 20px;
+            transition: transform 0.25s ease, border-color 0.25s ease,
+                        background 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 20px;
+            right: 20px;
+            height: 2px;
+            opacity: 0;
+            background: linear-gradient(90deg, #818cf8, #67e8f9);
+            transition: opacity 0.25s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            background: #ffffff0d;
+            border-color: #818cf866;
+            box-shadow: 0 18px 45px #00000025;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .icon-box {
+            display: grid;
+            place-items: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 15px;
+            font-size: 23px;
+        }
+
+        .purple { background: #818cf81c; }
+        .blue { background: #38bdf81c; }
+        .green { background: #34d3991c; }
+        .orange { background: #fb923c1c; }
+        .pink { background: #f472b61c; }
+        .cyan { background: #22d3ee1c; }
+
+        .number {
+            color: #65718a;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .card h3 {
+            font-size: 17px;
+            margin-bottom: 10px;
+            letter-spacing: -0.3px;
+        }
+
+        .card p {
+            color: #94a3b8;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .card-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+            padding-top: 22px;
+        }
+
+        .type {
+            color: #cbd5e1;
+            background: #ffffff0b;
+            border: 1px solid #ffffff12;
+            border-radius: 7px;
+            padding: 6px 9px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .arrow {
+            display: grid;
+            place-items: center;
+            width: 32px;
+            height: 32px;
+            border: 1px solid #ffffff20;
+            border-radius: 50%;
+            color: #c7d2fe;
+            transition: background 0.25s ease, transform 0.25s ease;
+        }
+
+        .card:hover .arrow {
+            background: #818cf833;
+            transform: translateX(3px);
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            margin-top: 65px;
+            padding-top: 22px;
+            border-top: 1px solid #ffffff12;
+            color: #718096;
+            font-size: 12px;
+        }
+
+        @media (max-width: 800px) {
+            .grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .topbar {
+                margin-bottom: 55px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .container {
+                padding: 30px 17px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                letter-spacing: -1.8px;
+            }
+
+            .tag {
+                font-size: 10px;
+                padding: 8px 10px;
+            }
+
+            footer {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <ul>
-        <li>
-            <a href="Assignment-1/">Assignment-1</a>
-        </li>
-        <li>
-            <a href="Assignment-2/">Assignment-2</a>
-        </li>
-        <li>
-            <a href="Assignment-3/">Assignment-3</a>
-        </li>
-        <li>
-            <a href="Assignment-4/">Assignment-4</a>
-        </li>
-        <li>
-            <a href="Assignment-5/">Assignment-5</a>
-        </li>
-        <li>
-            <a href="Assignment-6A/">Assignment-6</a>
-        </li>
-    </ul>
+    <main class="container">
+        <header class="topbar">
+            <div class="brand">
+                <div class="brand-icon">&lt;/&gt;</div>
+                <span>FSD<span style="color:#818cf8">.LAB</span></span>
+            </div>
+            <div class="tag">MCA · FULL STACK DEVELOPMENT</div>
+        </header>
+
+        <section class="hero">
+            <div class="eyebrow">Learning by building</div>
+            <h1>My Lab <span>Assignments.</span></h1>
+            <p>
+                A collection of Full Stack Development practicals, from JavaScript
+                fundamentals to interactive React applications. Select an assignment
+                below to get started.
+            </p>
+        </section>
+
+        <section>
+            <div class="section-heading">
+                <h2>Explore assignments</h2>
+                <span class="count">06 PRACTICALS</span>
+            </div>
+
+            <div class="grid">
+                <a class="card" href="Assignment-1/">
+                    <div class="card-top">
+                        <div class="icon-box purple">🧮</div>
+                        <span class="number">01 / 06</span>
+                    </div>
+                    <h3>JavaScript Calculator</h3>
+                    <p>Perform basic arithmetic operations with input validation.</p>
+                    <div class="card-bottom">
+                        <span class="type">HTML · CSS · JS</span>
+                        <span class="arrow">↗</span>
+                    </div>
+                </a>
+
+                <a class="card" href="Assignment-2/">
+                    <div class="card-top">
+                        <div class="icon-box blue">✓</div>
+                        <span class="number">02 / 06</span>
+                    </div>
+                    <h3>To-Do List</h3>
+                    <p>Add tasks, mark them complete, and remove them using the DOM.</p>
+                    <div class="card-bottom">
+                        <span class="type">DOM · JavaScript</span>
+                        <span class="arrow">↗</span>
+                    </div>
+                </a>
+
+                <a class="card" href="Assignment-3/">
+                    <div class="card-top">
+                        <div class="icon-box green">🛡️</div>
+                        <span class="number">03 / 06</span>
+                    </div>
+                    <h3>Form Validation</h3>
+                    <p>Validate user details and display helpful error messages.</p>
+                    <div class="card-bottom">
+                        <span class="type">HTML · CSS · JS</span>
+                        <span class="arrow">↗</span>
+                    </div>
+                </a>
+
+                <a class="card" href="Assignment-4/">
+                    <div class="card-top">
+                        <div class="icon-box orange">👤</div>
+                        <span class="number">04 / 06</span>
+                    </div>
+                    <h3>React Profile Card</h3>
+                    <p>Build a reusable profile card with React props.</p>
+                    <div class="card-bottom">
+                        <span class="type">React · Props</span>
+                        <span class="arrow">↗</span>
+                    </div>
+                </a>
+
+                <a class="card" href="Assignment-5/">
+                    <div class="card-top">
+                        <div class="icon-box pink">📝</div>
+                        <span class="number">05 / 06</span>
+                    </div>
+                    <h3>Controlled React Form</h3>
+                    <p>Capture form inputs and display changes in real time.</p>
+                    <div class="card-bottom">
+                        <span class="type">React · useState</span>
+                        <span class="arrow">↗</span>
+                    </div>
+                </a>
+
+                <a class="card" href="Assignment-6A/">
+                    <div class="card-top">
+                        <div class="icon-box cyan">🔢</div>
+                        <span class="number">06 / 06</span>
+                    </div>
+                    <h3>React Counter</h3>
+                    <p>Increment, decrement, and reset a counter with state.</p>
+                    <div class="card-bottom">
+                        <span class="type">React · useState</span>
+                        <span class="arrow">↗</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <footer>
+            <span>© 2026 FSD Lab · Academic Projects</span>
+            <span>Built with HTML, CSS, JavaScript & React</span>
+        </footer>
+    </main>
 </body>
 </html>
+```
