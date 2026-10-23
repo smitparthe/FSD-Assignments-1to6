@@ -1,0 +1,83 @@
+```yaml
+name: Deploy Full Stack Assignments
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build Assignment 4
+        working-directory: Assignment-4
+        run: |
+          npm install
+          npm run build -- --base=/${{ github.event.repository.name }}/Assignment-4/
+
+      - name: Build Assignment 5
+        working-directory: Assignment-5
+        run: |
+          npm install
+          npm run build -- --base=/${{ github.event.repository.name }}/Assignment-5/
+
+      - name: Build Assignment 6
+        working-directory: Assignment-6A
+        run: |
+          npm install
+          npm run build -- --base=/${{ github.event.repository.name }}/Assignment-6/
+
+      - name: Prepare Website
+        run: |
+          mkdir -p _site
+
+          cp index.html _site/
+
+          cp -r Assignment-1 _site/
+          cp -r Assignment-2 _site/
+          cp -r Assignment-3 _site/
+
+          mkdir -p _site/Assignment-4
+          mkdir -p _site/Assignment-5
+          mkdir -p _site/Assignment-6
+
+          cp -r Assignment-4/dist/. _site/Assignment-4/
+          cp -r Assignment-5/dist/. _site/Assignment-5/
+          cp -r Assignment-6/dist/. _site/Assignment-6/
+
+      - name: Upload Website Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+```

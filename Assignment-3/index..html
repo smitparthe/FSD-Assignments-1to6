@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form Validation</title>
+  <style>
+    * { box-sizing:border-box; } body { font-family:Arial,sans-serif; background:#f1f5f9; margin:0; padding:35px 16px; }
+    main { max-width:480px; margin:auto; background:white; padding:24px; border-radius:12px; box-shadow:0 8px 24px #0001; }
+    label { display:block; margin-top:14px; font-weight:bold; } input { width:100%; padding:10px; margin-top:6px; }
+    button { margin-top:18px; width:100%; padding:12px; color:white; background:#2563eb; border:0; border-radius:6px; cursor:pointer; }
+    #message { margin-top:16px; } .error { color:#b91c1c; } .success { color:#166534; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>User Registration</h1>
+    <form id="registrationForm" novalidate>
+      <label for="name">Full name</label><input id="name" autocomplete="name">
+      <label for="email">Email</label><input id="email" type="email" autocomplete="email">
+      <label for="phone">Phone</label><input id="phone" type="tel" autocomplete="tel" placeholder="10-digit phone number">
+      <label for="password">Password</label><input id="password" type="password" autocomplete="new-password">
+      <button type="submit">Register</button>
+    </form>
+    <div id="message" aria-live="polite"></div>
+  </main>
+  <script>
+    document.getElementById("registrationForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const password = document.getElementById("password").value;
+      const errors = [];
+      if (name.length < 2) errors.push("Name must contain at least 2 characters.");
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.push("Enter a valid email address.");
+      if (!/^\d{10}$/.test(phone)) errors.push("Phone must contain exactly 10 digits.");
+      if (password.length < 8) errors.push("Password must be at least 8 characters.");
+      const message = document.getElementById("message");
+      if (errors.length) { message.className = "error"; message.innerHTML = "<strong>Please fix these errors:</strong><ul>" + errors.map(e => "<li>" + e + "</li>").join("") + "</ul>"; }
+      else { message.className = "success"; message.textContent = "Registration form validated successfully!"; }
+    });
+  </script>
+</body>
+</html>

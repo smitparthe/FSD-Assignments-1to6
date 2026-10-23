@@ -1,0 +1,9 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, sans-serif; background: #f1f5f9; color: #0f172a; }
+button, input, textarea { font: inherit; }
+button { cursor: pointer; border: 0; border-radius: 6px; padding: 10px 14px; background: #2563eb; color: white; }
+input, textarea { display: block; width: 100%; padding: 10px; margin: 6px 0 14px; border: 1px solid #cbd5e1; border-radius: 6px; }
+.page { max-width: 760px; margin: 40px auto; padding: 24px; }
+.card, .panel { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 8px 24px #0001; }
+label { display: block; font-weight: 600; }
+.counter-page { max-width: 520px; text-align: center; } .count { font-size: 64px; font-weight: bold; margin: 24px 0; } .buttons { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; } .secondary { background:#475569; } .reset { background:#dc2626; }
