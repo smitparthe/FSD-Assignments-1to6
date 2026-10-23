@@ -52,7 +52,7 @@ jobs:
         working-directory: Assignment-6A
         run: |
           npm install
-          npm run build -- --base=/${{ github.event.repository.name }}/Assignment-6/
+          npm run build -- --base=/${{ github.event.repository.name }}/Assignment-6A/
 
       - name: Prepare Website
         run: |
@@ -66,7 +66,7 @@ jobs:
 
           mkdir -p _site/Assignment-4
           mkdir -p _site/Assignment-5
-          mkdir -p _site/Assignment-6
+          mkdir -p _site/Assignment-6A
 
           cp -r Assignment-4/dist/. _site/Assignment-4/
           cp -r Assignment-5/dist/. _site/Assignment-5/
