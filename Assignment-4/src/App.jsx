@@ -1,5 +1,5 @@
 import './App.css'
-
+import ProfileImage from './assets/smit.jpeg'
 function ProfileCard({ name, image, description }) {
   return (
     <article className="profile-card">
@@ -16,7 +16,7 @@ export default function App() {
       <h1>React Profile Card using Props</h1>
       <ProfileCard
         name="Smit Parthe"
-        image="https://placehold.co/160x160?text=Profile"
+        image={ProfileImage}
         description="MCA student learning full-stack web development with React."
       />
     </main>
