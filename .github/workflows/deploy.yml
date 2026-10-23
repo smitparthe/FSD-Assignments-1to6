@@ -70,7 +70,7 @@ jobs:
 
           cp -r Assignment-4/dist/. _site/Assignment-4/
           cp -r Assignment-5/dist/. _site/Assignment-5/
-          cp -r Assignment-6/dist/. _site/Assignment-6/
+          cp -r Assignment-6A/dist/. _site/Assignment-6A/
 
       - name: Upload Website Artifact
         uses: actions/upload-pages-artifact@v3
